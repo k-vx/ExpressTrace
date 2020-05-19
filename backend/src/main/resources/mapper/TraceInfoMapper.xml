@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lacknb.mapper.TraceInfoMapper">
+
+    <insert id="addTraceInfo">
+        insert into express_trace (mail, express_number, express_name)
+
+        values (#{mail}, #{expressNumber}, #{expressName});
+
+    </insert>
+
+
+    <insert id="addHistory">
+        insert into express_history (mail, express_number, express_name)
+
+        values (#{mail}, #{expressNumber}, #{expressName})
+    </insert>
+
+
+    <delete id="deleteTraceInfo">
+
+        delete from express_trace
+        where mail = #{mail} and express_number = #{expressNumber}
+    </delete>
+
+    <select id="findAllTraceInfo" resultType="cn.lacknb.pojo.TraceInfo">
+
+        select mail, express_number, express_name
+
+        from express_trace
+    </select>
+
+</mapper>

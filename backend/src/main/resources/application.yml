@@ -1,0 +1,4 @@
+# 使用配置 application-dev.yml这个文件的配置
+spring:
+  profiles:
+    active: dev
