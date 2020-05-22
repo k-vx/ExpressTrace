@@ -63,7 +63,7 @@ public class TraceTask {
         log.info("跟踪执行。。。。。。");
         List<TraceInfo> allTraceInfo = traceInfoService.findAllTraceInfo();
         for (TraceInfo traceInfo : allTraceInfo) {
-            Integer lastTrace = (Integer) context.getAttribute(traceInfo.getExpressNumber());
+            Integer lastTrace = (Integer) context.getAttribute(traceInfo.getMail() + traceInfo.getExpressNumber());
             String status = null;
             try {
                 JSONObject jsonObject = JSON.parseObject(traceController.selectExpress(traceInfo.getExpressName(), traceInfo.getExpressNumber())).getJSONObject("info");
@@ -87,7 +87,7 @@ public class TraceTask {
                         }
                     }
                     // 更新context
-                    context.setAttribute(traceInfo.getExpressNumber(), jsonObject.getJSONArray("context").size());
+                    context.setAttribute(traceInfo.getMail() + traceInfo.getExpressNumber(), jsonObject.getJSONArray("context").size());
                 }
 //               // 增加1秒的延迟
                 Thread.sleep(1000);
